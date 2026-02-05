@@ -1,0 +1,146 @@
+# Sistemas de Estructuras de Datos
+
+Este proyecto contiene tres programas independientes que demuestran el uso de diferentes estructuras de datos:
+
+1. **Sistema de Navegación**: Simula el historial de un navegador web
+2. **Sistema de Autocompletado**: Completa palabras a partir de un prefijo
+3. **Sistema de Recomendación de Productos**: Sugiere productos basándose en compras previas
+
+## Requisitos del Sistema
+
+### Python
+Todos los programas requieren Python 3.7 o superior instalado en su sistema.
+
+Para verificar si tiene Python instalado, abra una terminal y ejecute:
+```
+python3 --version
+```
+
+Si no tiene Python instalado, puede instalarlo con:
+```
+sudo apt update
+sudo apt install python3
+```
+
+### NetworkX
+El Sistema de Recomendación de Productos requiere la librería NetworkX.
+
+Para instalarla, ejecute en la terminal:
+```
+pip3 install networkx
+```
+
+Si el comando anterior no funciona, primero instale pip:
+```
+sudo apt install python3-pip
+```
+
+Para verificar que NetworkX está instalada correctamente:
+```
+python3 -c "import networkx; print(networkx.__version__)"
+```
+
+## Cómo Ejecutar los Programas
+
+### En Ubuntu
+
+Abra una terminal (puede usar Ctrl+Alt+T) y navegue hasta la carpeta donde descargó los archivos usando el comando cd:
+```
+cd /ruta/a/la/carpeta
+```
+
+Luego ejecute el programa deseado:
+
+**Sistema de Navegación:**
+```
+python3 sistema_navegacion.py
+```
+
+**Sistema de Autocompletado:**
+```
+python3 autocompletado.py
+```
+
+**Sistema de Recomendación:**
+```
+python3 recomendacion_productos.py
+```
+
+## Cómo Usar los Programas
+
+Cada programa presenta un menú principal con las siguientes opciones:
+
+1. **Ejecutar ejemplos**: Muestra una demostración automática del funcionamiento del programa
+2. **Modo interactivo**: Permite interactuar manualmente con el sistema
+3. **Salir**: Cierra el programa
+
+### Interacción con los Menús
+
+Cuando el programa le presente un menú, simplemente escriba el número de la opción deseada y presione Enter.
+
+Ejemplo:
+```
+Menu principal:
+1. Ejecutar ejemplos
+2. Modo interactivo
+3. Salir
+
+Seleccione una opcion: 2
+```
+
+Cuando el programa solicite información (nombres, palabras, URLs), escriba el texto solicitado y presione Enter.
+
+Ejemplo:
+```
+Ingrese nombre del usuario: Juan
+```
+
+### Descripción de Cada Programa
+
+#### Sistema de Navegación
+Simula el comportamiento del historial de un navegador web. Permite cargar páginas, retroceder y avanzar en el historial.
+
+**Opciones del modo interactivo:**
+- Cargar nueva página
+- Ir a página anterior
+- Ir a página siguiente
+
+#### Sistema de Autocompletado
+Sugiere palabras completas a partir de un prefijo ingresado.
+
+**Opciones del modo interactivo:**
+- Agregar palabra al diccionario
+- Buscar sugerencias para un prefijo
+- Mostrar todas las palabras almacenadas
+
+#### Sistema de Recomendación de Productos
+Analiza las compras de múltiples usuarios y recomienda productos basándose en patrones de compra.
+
+**Opciones del modo interactivo:**
+- Registrar usuario
+- Registrar compra
+- Ver recomendaciones para un usuario
+- Mostrar información de usuarios
+- Visualizar el grafo de relaciones entre productos
+
+## Solución de Problemas
+
+### Error: "ModuleNotFoundError: No module named 'networkx'"
+Instale NetworkX usando el comando indicado en la sección de Requisitos.
+
+### Error: "python3: command not found"
+Instale Python usando:
+```
+sudo apt update
+sudo apt install python3
+```
+
+### El programa no responde
+Asegúrese de presionar Enter después de escribir su respuesta en el menú o cuando ingrese información.
+
+## Notas Adicionales
+
+- Todos los programas se ejecutan en la terminal y no tienen interfaz gráfica.
+- Para salir de cualquier programa, seleccione la opción "Salir" del menú principal.
+- Los datos ingresados en modo interactivo solo se mantienen mientras el programa está en ejecución.
+- Es recomendable probar primero la opción "Ejecutar ejemplos" para familiarizarse con la funcionalidad de cada programa.
