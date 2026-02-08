@@ -111,22 +111,38 @@ def menu():
     print("3. Salir")
     return int(input("Seleccione una opción: "))
 
+def es_binario_valido(num_str):
+    """Verifica que el número contenga solo dígitos 0 y 1"""
+    for digito in num_str:
+        if digito not in ['0', '1']:
+            return False
+    return True
+
 if __name__ == "__main__":
     while True:
         opcion = menu()
         if opcion == 1:
             pruebas()
         elif opcion == 2:
-            num1 = int(input("Ingrese el primer número binario (4 dígitos): "))
-            num2 = int(input("Ingrese el segundo número binario (4 dígitos): "))
+            num1_str = input("Ingrese el primer número binario (4 dígitos): ")
+            num2_str = input("Ingrese el segundo número binario (4 dígitos): ")
+            
+            # Validar que sean números binarios válidos
+            if not es_binario_valido(num1_str) or not es_binario_valido(num2_str):
+                print("\n Error: El número contiene dígitos inválidos. Solo se permiten 0 y 1.")
+                print("Por favor, intente de nuevo.\n")
+                continue
+            
+            num1 = int(num1_str)
+            num2 = int(num2_str)
             a = binario(num1)
             b = binario(num2)
 
             # Validar que los números sean de 4 dígitos
-            if len(str(num1)) > 4 or len(str(num2)) > 4:
-                print("\n Error: Ambos números deben ser de 4 dígitos. Por favor, intente de nuevo.\n")
+            if len(num1_str) > 4 or len(num2_str) > 4:
+                print("\n  Error: Ambos números deben ser de 4 dígitos. Por favor, intente de nuevo.\n")
                 continue
-            
+
             print(f"Suma de {a} + {b} = {a + b}")
             
             # Validar que el minuendo sea >= sustraendo para la resta
@@ -135,7 +151,7 @@ if __name__ == "__main__":
             if a > b or son_iguales:
                 print(f"Resta de {a} - {b} = {a - b}")
             else:
-                print("\n Error: El primer número debe ser mayor o igual al segundo para realizar la resta.")
+                print("\n  Error: El primer número debe ser mayor o igual al segundo para realizar la resta.")
                 print("Por favor, intente de nuevo.\n")
         elif opcion == 3:
             print("Saliendo...")
