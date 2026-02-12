@@ -8,9 +8,11 @@ def afd(entrada):
 	      }
 	# El estado inicial es q1
 	q='q1' 
+	# El estado de aceptacion es q2
+	qf='q2'
 	for e in entrada:
 		q=trans[q][e]
-	if q == 'q2':
+	if q == qf:
 		print("ACEPTADO")
 	else:
 		print("NO ACEPTADO")
