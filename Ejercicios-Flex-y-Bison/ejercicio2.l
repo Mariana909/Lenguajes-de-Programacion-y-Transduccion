@@ -1,7 +1,7 @@
 /* Calculadora Hexadecimal  */
 %{
 #include <ejercicio2.tab.h>
-%/
+%}
 %%
 "+"    { return ADD; }
 "-"    { return SUB; }
