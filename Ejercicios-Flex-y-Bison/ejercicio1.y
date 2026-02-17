@@ -10,7 +10,8 @@
 calclist: /* nothing */                       
 matches at beginning of input
  | calclist exp EOL { printf("= %d\n", $1); } EOL is end of an expression
- | calclist EOL {/* Modificación que permite que la calculadora siga funcionando al recibir un comentario */}
+/* Modificación que permite que la calculadora siga funcionando al recibir un comentario */
+ | calclist EOL {}
  ;
 exp: factor       
 default $$ = $1 
