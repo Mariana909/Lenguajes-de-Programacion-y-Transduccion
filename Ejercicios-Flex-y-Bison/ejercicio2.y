@@ -8,7 +8,7 @@
 %token EOL
 %%
 calclist: /* nothing */                       
- | calclist exp EOL { printf("= %d (0x%x\n", $2); } /* EOL is end of an expression */
+ | calclist orbit EOL { printf("= %d (0x%X)\n", $2, $2); }
  ;
 exp: factor       
  | exp ADD factor { $$ = $1 + $3; }
