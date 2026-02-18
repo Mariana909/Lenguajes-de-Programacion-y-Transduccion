@@ -7,8 +7,8 @@
 "-"    { return SUB; }
 "*"    { return MUL; }
 "/"    { return DIV; }
-"|"    { return ABS; }
 "||"   { return OR; } /* Ya que flex tiene en cuenta la coincidencia más larga, no hay conflicto con ABS */
+"|"    { return ABS; }
 "&"    { return AND; }
 "^"    { return XOR; }
 "~"    { return NOT; }
