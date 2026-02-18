@@ -1,4 +1,4 @@
-/* Calculadora Hexadecimal  */
+/* Calculadora Hexadecimal - Decimal  */
 %{
 #include <ejercicio2.tab.h>
 %}
