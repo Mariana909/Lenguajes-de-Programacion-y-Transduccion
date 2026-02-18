@@ -4,7 +4,7 @@
 %}
 /* declare tokens */
 %token NUMBER
-%token ADD SUB MUL DIV ABS OR AND XOR NOT
+%token ADD SUB MUL DIV ABS OR AND XOR NOT LEF RIG
 %token EOL
 %%
 calclist: /* nothing */                       
@@ -19,7 +19,8 @@ factor: term
  | factor DIV term { $$ = $1 / $3; }
  ;
 term: NUMBER  
- | ABS term   { $$ = $2 >= 0? $2 : - $2; }
+ | "|" term "|"  { $$ = $2 >= 0? $2 : - $2; }
+ | NOT term   { $$ = ~$2; }
 ;
 %%
 main(int argc, char **argv)
