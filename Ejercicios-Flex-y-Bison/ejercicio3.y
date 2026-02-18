@@ -4,23 +4,34 @@
 %}
 /* declare tokens */
 %token NUMBER
-%token ADD SUB MUL DIV ABS OR AND XOR NOT LEF RIG
+%token ADD SUB MUL DIV AND XOR NOT LEF RIG
 %token EOL
 %%
 calclist: /* nothing */                       
- | calclist exp EOL { printf("= %d (0x%x\n", $2); } /* EOL is end of an expression */
+ | calclist orbit EOL { printf("= %d (0x%x\n", $2); } /* EOL is end of an expression */
+ | calclist EOL
  ;
+orbit: xorbit
+ | orbit '|' xorbit { $$ = $1 | $3; }
+xorbit: andbit
+ | xorbit XOR andbit { $$ = $1 ^ $3; }
+andbit: desp
+ | andbit AND desp { $$ = $1 & $3; }
+desp: exp
+ | desp LEF exp { $$ = $1 << $3; }
+ | desp RIG exp { $$ = $1 >> $3; }
 exp: factor       
  | exp ADD factor { $$ = $1 + $3; }
  | exp SUB factor { $$ = $1 - $3; }
  ;
-factor: term       
+factor: notbit       
  | factor MUL term { $$ = $1 * $3; }
  | factor DIV term { $$ = $1 / $3; }
  ;
 term: NUMBER  
- | "|" term "|"  { $$ = $2 >= 0? $2 : - $2; }
  | NOT term   { $$ = ~$2; }
+ | "(" term ")" { $$ = $2; }
+ | "|" term "|"  { $$ = $2 >= 0? $2 : - $2; }
 ;
 %%
 main(int argc, char **argv)
