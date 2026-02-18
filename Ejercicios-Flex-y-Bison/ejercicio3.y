@@ -1,6 +1,9 @@
 /* simplest version of calculator */
 %{
 #include <stdio.h>
+int yylex();
+void yyerror(char *s);
+extern FILE *yyin;  /* Variable que Flex usa para la entrada */
 %}
 /* declare tokens */
 %token NUMBER
@@ -26,7 +29,7 @@ exp: factor
  ;
 factor: notbit       
  | factor MUL term { $$ = $1 * $3; }
- | factor DIV term { $$ = $1 / $3; }
+ | factor DIV term { if ($3 != 0 ) {$$ = $1 / $3;} else { printf("Error, división entre cero");} }
  ;
 term: NUMBER  
  | NOT term   { $$ = ~$2; }
@@ -34,11 +37,30 @@ term: NUMBER
  | "|" term "|"  { $$ = $2 >= 0? $2 : - $2; }
 ;
 %%
-main(int argc, char **argv)
-{
-  yyparse();
+int main(int argc, char **argv) {
+    if (argc > 1) {
+        /* Si hay argumento, abrir el archivo */
+        yyin = fopen(argv[1], "r");
+        if (!yyin) {
+            fprintf(stderr, "Error: No se puede abrir el archivo '%s'\n", argv[1]);
+            return 1;
+        }
+        printf("Procesando archivo: %s\n\n", argv[1]);
+    } else {
+        /* Si no hay argumento, usar entrada estándar */
+        printf("Calculadora - Escribe expresiones (Ctrl+D para salir)\n");
+        yyin = stdin;
+    }
+    
+    yyparse();
+    
+    if (yyin != stdin) {
+        fclose(yyin);
+    }
+    
+    return 0;
 }
-yyerror(char *s)
-{
-  fprintf(stderr, "error: %s\n", s);
+
+void yyerror(char *s) {
+    fprintf(stderr, "Error: %s\n", s);
 }
