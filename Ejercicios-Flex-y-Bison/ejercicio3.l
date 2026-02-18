@@ -1,6 +1,6 @@
 /* Calculadora Hexadecimal - Decimal con Operadores Lógicos */
 %{
-#include <ejercicio2.tab.h>
+#include "ejercicio3.tab.h>"
 %}
 %%
 "+"    { return ADD; }
@@ -17,7 +17,7 @@
 ")"    { return ')'; }
 [0-9]+ { yylval = atoi(yytext); return NUMBER; }
 /* Modificación que incluye a los números hexadecimales */
-0x[a-f0-9]+ {yyval = strol(yytext, NULL, 16); return NUMBER}
+0[xX][0-9a-fA-F]+ { yylval = strtol(yytext, NULL, 16); return NUMBER; }
 \n     { return EOL; }
 [ \t]  { /* ignore whitespace */ }
 .      { printf("Mystery character %c\n", *yytext); }
