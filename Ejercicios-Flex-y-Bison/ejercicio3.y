@@ -11,7 +11,7 @@ extern FILE *yyin;  /* Variable que Flex usa para la entrada */
 %token EOL
 %%
 calclist: /* nothing */                       
- | calclist orbit EOL { printf("= %d (0x%x\n", $2); } /* EOL is end of an expression */
+ | calclist orbit EOL { printf("= %d (0x%X)\n", $2, $2); }
  | calclist EOL
  ;
 orbit: xorbit
@@ -27,9 +27,16 @@ exp: factor
  | exp ADD factor { $$ = $1 + $3; }
  | exp SUB factor { $$ = $1 - $3; }
  ;
-factor: notbit       
+factor: term       
  | factor MUL term { $$ = $1 * $3; }
- | factor DIV term { if ($3 != 0 ) {$$ = $1 / $3;} else { printf("Error, división entre cero");} }
+ | factor DIV term { 
+         if ($3 != 0 ) {
+            $$ = $1 / $3;
+         } else { 
+            yyerror("División por cero");
+            $$ = 0;
+           } 
+         }
  ;
 term: NUMBER  
  | NOT term   { $$ = ~$2; }
