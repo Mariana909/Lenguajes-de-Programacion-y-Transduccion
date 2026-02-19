@@ -8,7 +8,7 @@
 %token EOL
 %%
 calclist: /* nothing */                       
- | calclist exp EOL { printf("= %d\n", $1); } EOL is end of an expression
+ | calclist exp EOL { printf("= %d\n", $1); } 
 /* Modificación que permite que la calculadora siga funcionando al recibir un comentario */
  | calclist EOL {}
  ;
