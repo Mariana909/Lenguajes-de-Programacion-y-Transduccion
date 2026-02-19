@@ -15,7 +15,7 @@
 ├── ejercicio3.l     # Pregunta 3: scanner con operadores bit a bit
 ├── ejercicio3.y     # Pregunta 3: parser con operadores bit a bit
 ├── ejercicio6.c     # Pregunta 6: contador de palabras manual en C
-├── entrada.txt      # Archivo de texto de prueba para ejercicio6 y ejemplos
+├── entrada.txt      # Archivo de texto de prueba para ejercicio6 y ejemplo1
 └── entrada3.txt     # Archivo de texto con expresiones para ejercicio3
 ```
 
