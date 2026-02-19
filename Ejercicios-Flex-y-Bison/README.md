@@ -222,6 +222,28 @@ Ejemplo de salida:
 ```
 > Se usa redireccionamiento (`< entrada.txt`) ya que el programa lee desde `stdin`.
 
+#### Comparación de velocidad con ejemplo1 (Flex)
+
+La pregunta 6 pide comparar si la versión en C es más rápida que la versión en Flex. Para medirlo se usa el comando `time` desde la terminal:
+
+```bash
+time ./ejercicio6 < entrada.txt
+time ./ejemplo1 < entrada.txt
+```
+
+La salida de `time` tiene tres valores: **real** es el tiempo total transcurrido (el más relevante), **user** es el tiempo de CPU del proceso y **sys** el tiempo usado por el sistema operativo.
+
+Para que la diferencia sea visible, conviene generar un archivo de mayor tamaño repitiendo `entrada.txt` muchas veces:
+
+```bash
+for i in $(seq 1000); do cat entrada.txt; done > entrada_grande.txt
+
+time ./ejercicio6 < entrada_grande.txt
+time ./ejemplo1 < entrada_grande.txt
+```
+
+La versión en C suele ser ligeramente más rápida porque evita el overhead de las funciones generadas automáticamente por Flex, aunque en la práctica la diferencia es mínima para archivos pequeños.
+
 ---
 
 ## Notas
