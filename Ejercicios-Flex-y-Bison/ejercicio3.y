@@ -40,8 +40,8 @@ factor: term
  ;
 term: NUMBER  
  | NOT term   { $$ = ~$2; }
- | "(" term ")" { $$ = $2; }
- | "|" term "|"  { $$ = $2 >= 0? $2 : - $2; }
+ | '(' orbit ')' { $$ = $2; }
+ | '|' orbit '|'  { $$ = $2 >= 0? $2 : - $2; }
 ;
 %%
 int main(int argc, char **argv) {
