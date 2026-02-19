@@ -18,11 +18,10 @@ default $$ = $1
  | exp SUB factor { $$ = $1 - $3; }
  ;
 factor: term       
-default $$ = $1 
  | factor MUL term { $$ = $1 * $3; }
  | factor DIV term { $$ = $1 / $3; }
  ;
-term: NUMBER  default $$ = $1 
+term: NUMBER  
  | ABS term   { $$ = $2 >= 0? $2 : - $2; }
 ;
 %%
