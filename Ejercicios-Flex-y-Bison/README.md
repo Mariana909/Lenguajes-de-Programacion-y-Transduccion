@@ -15,8 +15,8 @@
 ├── ejercicio3.l     # Pregunta 3: scanner con operadores bit a bit
 ├── ejercicio3.y     # Pregunta 3: parser con operadores bit a bit
 ├── ejercicio6.c     # Pregunta 6: contador de palabras manual en C
-├── entrada.txt      # Archivo de texto de prueba para ejercicio6 y ejemplo1
-└── entrada3.txt     # Archivo de texto con expresiones para ejercicio3
+├── entrada.txt      # Texto largo de prueba para ejercicio6 y ejemplos
+└── entrada3.txt     # Expresiones de prueba para ejercicio3
 ```
 
 ---
@@ -38,6 +38,17 @@ flex ejemplo1.l
 gcc lex.yy.c -o ejemplo1 -lfl
 ./ejemplo1 < entrada.txt
 ```
+Ejemplo de entrada:
+```
+Hello world
+This is a test
+```
+Ejemplo de salida:
+```
+       2       6      28
+```
+
+---
 
 ### ejemplo2.l — Traductor inglés-americano
 ```bash
@@ -45,6 +56,16 @@ flex ejemplo2.l
 gcc lex.yy.c -o ejemplo2 -lfl
 ./ejemplo2 < entrada.txt
 ```
+Ejemplo de entrada:
+```
+I love the colour of this flavour
+```
+Ejemplo de salida:
+```
+I love the color of this flavor
+```
+
+---
 
 ### ejemplo3.l — Reconocedor de tokens
 ```bash
@@ -52,6 +73,19 @@ flex ejemplo3.l
 gcc lex.yy.c -o ejemplo3 -lfl
 ./ejemplo3 < entrada.txt
 ```
+Ejemplo de entrada:
+```
+3 + 5
+```
+Ejemplo de salida:
+```
+NUMBER 3
+PLUS
+NUMBER 5
+NEWLINE
+```
+
+---
 
 ### ejemplo4.l — Reconocedor de tokens con valores
 ```bash
@@ -59,6 +93,19 @@ flex ejemplo4.l
 gcc lex.yy.c -o ejemplo4 -lfl
 ./ejemplo4 < entrada.txt
 ```
+Ejemplo de entrada:
+```
+3 + 5
+```
+Ejemplo de salida:
+```
+258 = 3
+259
+258 = 5
+264
+```
+
+---
 
 ### ejemplo5.y + ejemplo6.l — Calculadora completa
 ```bash
@@ -66,6 +113,16 @@ bison -d ejemplo5.y
 flex ejemplo6.l
 gcc ejemplo5.tab.c lex.yy.c -o ejemplo5 -lfl
 ./ejemplo5
+```
+Ejemplo de entrada:
+```
+3 + 5
+10 * 2
+```
+Ejemplo de salida:
+```
+= 8
+= 20
 ```
 
 ---
@@ -79,6 +136,20 @@ flex ejemplo6.l
 gcc ejercicio1.tab.c lex.yy.c -o ejercicio1 -lfl
 ./ejercicio1
 ```
+Ejemplo de entrada:
+```
+3 + 5
+
+10 * 2
+```
+Ejemplo de salida:
+```
+= 8
+= 20
+```
+> A diferencia del ejemplo original, la línea vacía no genera error.
+
+---
 
 ### Ejercicio 2 — Calculadora hexadecimal-decimal (Pregunta 2)
 ```bash
@@ -87,29 +158,73 @@ flex ejercicio2.l
 gcc ejercicio2.tab.c lex.yy.c -o ejercicio2 -lfl
 ./ejercicio2
 ```
+Ejemplo de entrada:
+```
+0xFF + 1
+10 + 5
+0xAB - 0x0B
+```
+Ejemplo de salida:
+```
+= 256 (0x100)
+= 15 (0xF)
+= 160 (0xA0)
+```
+
+---
 
 ### Ejercicio 3 — Calculadora con operadores bit a bit (Pregunta 3)
 ```bash
 bison -d ejercicio3.y
 flex ejercicio3.l
 gcc ejercicio3.tab.c lex.yy.c -o ejercicio3 -lfl
-
-# Opción 1: con archivo de entrada directamente
+```
+Para este ejercicio el archivo puede pasarse **directamente como argumento** o usando redireccionamiento:
+```bash
+# Opción 1: argumento directo (exclusivo de este ejercicio)
 ./ejercicio3 entrada3.txt
 
-# Opción 2: con redireccionamiento
+# Opción 2: redireccionamiento (igual que los demás)
 ./ejercicio3 < entrada3.txt
 ```
+Ejemplo de entrada:
+```
+5 & 3
+0xFF | 0x0F
+~5 & 0xFF
+(3 + 4) << 2
+|10 - 15|
+```
+Ejemplo de salida:
+```
+= 1 (0x1)
+= 255 (0xFF)
+= 250 (0xFA)
+= 28 (0x1C)
+= 5 (0x5)
+```
+
+---
 
 ### Ejercicio 6 — Contador de palabras en C (Pregunta 6)
 ```bash
 gcc ejercicio6.c -o ejercicio6
 ./ejercicio6 < entrada.txt
 ```
+Ejemplo de entrada:
+```
+Hello world
+This is a test
+```
+Ejemplo de salida:
+```
+       2       6      28
+```
+> Se usa redireccionamiento (`< entrada.txt`) ya que el programa lee desde `stdin`.
 
 ---
 
 ## Notas
 
-- Para los ejemplos y el ejercicio 6 se usa **redireccionamiento** (`< archivo.txt`) ya que leen desde `stdin`.
-- El ejercicio 3 permite pasar el archivo directamente como argumento al ejecutable gracias a la variable `yyin` de Flex, por lo que admite ambas formas de entrada.
+- Todos los programas usan **redireccionamiento** (`< archivo.txt`) para recibir la entrada, excepto el ejercicio 3 que adicionalmente permite pasar el archivo como argumento directo gracias al uso de la variable `yyin` de Flex.
+- Los archivos `entrada.txt` y `entrada3.txt` incluidos en el repositorio sirven como entradas de prueba para facilitar la ejecución y toma de capturas.
