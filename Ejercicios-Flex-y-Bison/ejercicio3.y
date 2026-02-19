@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
         printf("Procesando archivo: %s\n\n", argv[1]);
     } else {
         /* Si no hay argumento, usar entrada estándar */
-        printf("Calculadora - Escribe expresiones (Ctrl+D para salir)\n");
+        printf("Calculadora - Ctrl+D para salir\n");
         yyin = stdin;
     }
     
