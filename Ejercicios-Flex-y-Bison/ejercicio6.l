@@ -22,7 +22,7 @@ int main(int argc, char **argv)
   /* Si no se pasa archivo, lee desde stdin como antes */
 
   yylex();
-  printf("Líneas: %8d\nPalabras: %8d\nCaracteres: %8d\n", lines, words, chars);
+  printf(" %8d\n %8d\n %8d\n", lines, words, chars);
 
   if (argc > 1) {
     fclose(yyin);
