@@ -8,12 +8,11 @@
 %token EOL
 %%
 calclist: /* nothing */                       
- | calclist exp EOL { printf("= %d\n", $1); } 
+ | calclist exp EOL { printf("= %d\n", $2); } 
 /* Modificación que permite que la calculadora siga funcionando al recibir un comentario */
  | calclist EOL {}
  ;
 exp: factor       
-default $$ = $1 
  | exp ADD factor { $$ = $1 + $3; }
  | exp SUB factor { $$ = $1 - $3; }
  ;
@@ -25,7 +24,7 @@ term: NUMBER
  | ABS term   { $$ = $2 >= 0? $2 : - $2; }
 ;
 %%
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
   yyparse();
 }
