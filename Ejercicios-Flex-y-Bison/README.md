@@ -54,7 +54,7 @@ Ejemplo de salida:
 ```bash
 flex ejemplo2.l
 gcc lex.yy.c -o ejemplo2 -lfl
-./ejemplo2 < entrada.txt
+./ejemplo2
 ```
 Ejemplo de entrada:
 ```
@@ -71,7 +71,7 @@ I love the color of this flavor
 ```bash
 flex ejemplo3.l
 gcc lex.yy.c -o ejemplo3 -lfl
-./ejemplo3 < entrada.txt
+./ejemplo3 
 ```
 Ejemplo de entrada:
 ```
@@ -91,7 +91,7 @@ NEWLINE
 ```bash
 flex ejemplo4.l
 gcc lex.yy.c -o ejemplo4 -lfl
-./ejemplo4 < entrada.txt
+./ejemplo4
 ```
 Ejemplo de entrada:
 ```
