@@ -1,6 +1,6 @@
 /* Calculadora Hexadecimal - Decimal  */
 %{
-#include <ejercicio2.tab.h>
+#include "ejercicio2.tab.h"
 %}
 %%
 "+"    { return ADD; }
